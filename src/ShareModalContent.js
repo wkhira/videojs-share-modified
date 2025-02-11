@@ -1,6 +1,6 @@
 import Clipboard from 'clipboard';
 import * as sharing from 'vanilla-sharing';
-import { isTouchDevice, filterSocials } from './utils';
+import { isTouchDevice, filterSocials, getEventByContext } from './utils';
 import fbFeed from './icons/fbFeed.svg';
 import tw from './icons/tw.svg';
 import reddit from './icons/reddit.svg';
@@ -151,7 +151,10 @@ export default class ShareModalContent {
     const btns = this.content.querySelectorAll(`.${this.socialBtnClass}`);
 
     Array.from(btns).forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+      
+      const eventByContext = getEventByContext()
+
+      btn.addEventListener(eventByContext, (e) => {
         const social = e.currentTarget.getAttribute('data-social');
         const sharingFN = sharing[social];
 

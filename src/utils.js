@@ -32,3 +32,12 @@ export function filterSocials(socials = [], mobileVerification = true) {
     isMobileDevice() ? socials : socials.filter((social) => !EXCLUDED_SOCIALS.includes(social)) :
     socials;
 }
+
+/**
+ * Checks which event is to be used.
+ * 
+ * @return {boolean}
+ */
+export function getEventByContext() {
+  return (isMobileDevice() ? 'touchend' : 'click'); 
+}
